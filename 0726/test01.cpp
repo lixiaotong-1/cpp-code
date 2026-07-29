@@ -25,19 +25,29 @@
 // 程序能够正确跟踪并打印出vector的大小和容量变化。
 // 程序能够正确识别扩容事件的发生。
 // 程序能够通过索引正确访问并打印出vector中的第一个和最后一个元素。
-// #include <iostream>
-// #include <vector>
+#include <iostream>
+#include <vector>
 
-// int main() {
-//     std::vector<int> vec;
-//     std::cout << "origin size = " << vec.size() << ", capacity = " << vec.capacity() << "\n";
-//     for (int i = 0; i < 10; ++i) {
-//         vec.push_back(i + 1);
-//         std::cout << " 添加第" << i + 1 << "个元素之后，size = " << vec.size() << ", capacity = " << vec.capacity() << "\n";
-//     }
-//     std::cout << "第一个元素是" << vec[0] << "\n";
-//     std::cout << "最后一个元素是" << vec[vec.size() - 1] << "\n";
-// }
+int main() {
+    std::vector<int> vec;
+    std::cout << "origin size = " << vec.size() << ", capacity = " << vec.capacity() << "\n";
+    for (int i = 0; i < 10; ++i) {
+        vec.push_back(i + 1);
+        std::cout << " 添加第" << i + 1 << "个元素之后，size = " << vec.size() << ", capacity = " << vec.capacity() << "\n";
+    }
+    std::cout << "第一个元素是" << vec[0] << "\n";
+    std::cout << "最后一个元素是" << vec[vec.size() - 1] << "\n";
+    vec.reserve(20);
+    for (int i = 0; i < vec.capacity(); ++i) {
+        std::cout << vec[i] << " ";
+    }
+    std::cout << "\n";
+    vec.resize(25);
+    for (int i = 0; i < vec.size(); ++i) {
+        std::cout << vec[i] << " ";
+    }
+    std::cout << "\n";
+}
 
 // 题目3：修改std::vector中的元素
 // 要求：编写一个C++函数，该函数接收一个std::vector<int>的引用作为参数，并遍历该vector，将所有元素的值加倍。在主函数中测试该函数。
@@ -104,42 +114,42 @@
 // 程序能够使用std::unique（结合erase）去除vector中的重复元素。
 // 程序能够使用std::find（或其他查找算法）在vector中查找特定元素，并正确处理查找结果。
 // 程序能够正确遍历并打印出处理后的vector中的所有元素，以及查找特定元素的结果（如果找到）。
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <utility>
-#include <ctime>
+// #include <iostream>
+// #include <vector>
+// #include <algorithm>
+// #include <utility>
+// #include <ctime>
 
-void printVec(const std::vector<int>& vec) {
-    for (const int& a: vec) {
-        std::cout << a << " ";
-    }
-    std::cout << "\n";
-}
+// void printVec(const std::vector<int>& vec) {
+//     for (const int& a: vec) {
+//         std::cout << a << " ";
+//     }
+//     std::cout << "\n";
+// }
 
-int main() {
-    std::vector<int> vec;
-    std::srand(unsigned(std::time(nullptr)));
-    for (int i = 0; i < 10; ++i) {
-        vec.push_back(std::rand() % 10);
-    }
-    std::cout << "随机值初始化数组后" << "\n";
-    printVec(vec);
-    std::sort(vec.begin(), vec.end());
-    std::cout << "堆数组排序后" << "\n";
-    printVec(vec);
+// int main() {
+//     std::vector<int> vec;
+//     std::srand(unsigned(std::time(nullptr)));
+//     for (int i = 0; i < 10; ++i) {
+//         vec.push_back(std::rand() % 10);
+//     }
+//     std::cout << "随机值初始化数组后" << "\n";
+//     printVec(vec);
+//     std::sort(vec.begin(), vec.end());
+//     std::cout << "堆数组排序后" << "\n";
+//     printVec(vec);
 
-    std::vector<int>::iterator newend = std::unique(vec.begin(), vec.end());
-    vec.erase(newend, vec.end());
-    std::cout << "对数组去重之后" << "\n";
-    // for (auto iter = vec.begin(); iter != newend; ++iter) {
-    //     std::cout << *iter << " ";
-    // }
-    printVec(vec);
-    auto iter = std::find(vec.begin(), vec.end(), 9);
-    if (iter != vec.end()) {
-        std::cout << "找到了目标元素9" << "\n";
-    } else {
-        std::cout << "未找到目标元素9" << "\n";
-    }
-}
+//     std::vector<int>::iterator newend = std::unique(vec.begin(), vec.end());
+//     vec.erase(newend, vec.end());
+//     std::cout << "对数组去重之后" << "\n";
+//     // for (auto iter = vec.begin(); iter != newend; ++iter) {
+//     //     std::cout << *iter << " ";
+//     // }
+//     printVec(vec);
+//     auto iter = std::find(vec.begin(), vec.end(), 9);
+//     if (iter != vec.end()) {
+//         std::cout << "找到了目标元素9" << "\n";
+//     } else {
+//         std::cout << "未找到目标元素9" << "\n";
+//     }
+// }
